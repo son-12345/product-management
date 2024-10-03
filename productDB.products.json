@@ -1,0 +1,28 @@
+[{
+  "_id": {
+    "$oid": "66fe47c3a3b8f33fb07b94d3"
+  },
+  "ProductCode": "a1",
+  "ProductName": "Samsung",
+  "ProductDate": {
+    "$date": "2024-10-03T00:00:00.000Z"
+  },
+  "ProductOriginPrice": 2000,
+  "Quantity": 23,
+  "ProductStoreCode": "s1",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fe498066141ebd4394634a"
+  },
+  "ProductCode": "a2",
+  "ProductName": "iphone16",
+  "ProductDate": {
+    "$date": "2024-10-02T00:00:00.000Z"
+  },
+  "ProductOriginPrice": 1000,
+  "Quantity": 50,
+  "ProductStoreCode": "s1",
+  "__v": 0
+}]
