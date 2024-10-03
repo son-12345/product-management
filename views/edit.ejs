@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f7fa;
+        }
+        .container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        h1 {
+            color: #343a40;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-4">Edit Product</h1>
+    <form action="/update-product/<%= product._id %>" method="POST">
+        <div class="form-group">
+            <input type="text" name="ProductCode" value="<%= product.ProductCode %>" required class="form-control" placeholder="Product Code">
+        </div>
+        <div class="form-group">
+            <input type="text" name="ProductName" value="<%= product.ProductName %>" required class="form-control" placeholder="Product Name">
+        </div>
+        <div class="form-group">
+            <input type="date" name="ProductDate" value="<%= product.ProductDate.toISOString().split('T')[0] %>" required class="form-control">
+        </div>
+        <div class="form-group">
+            <input type="number" name="ProductOriginPrice" value="<%= product.ProductOriginPrice %>" required class="form-control" step="0.01" placeholder="Origin Price">
+        </div>
+        <div class="form-group">
+            <input type="number" name="Quantity" value="<%= product.Quantity %>" required class="form-control" placeholder="Quantity">
+        </div>
+        <div class="form-group">
+            <input type="text" name="ProductStoreCode" value="<%= product.ProductStoreCode %>" required class="form-control" placeholder="Store Code">
+        </div>
+        <button type="submit" class="btn btn-custom">Update Product</button>
+    </form>
+</div>
+</body>
+</html>
