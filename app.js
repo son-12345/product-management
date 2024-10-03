@@ -9,7 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Kết nối đến MongoDB
-mongoose.connect('mongodb://localhost:27017/productDB')
+mongoose.connect('mongodb://localhost:27017/productDB', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('Could not connect to MongoDB:', err));
 
@@ -36,7 +36,17 @@ app.set('views', path.join(__dirname, 'views'));
 // Đường dẫn trang chủ để hiển thị sản phẩm
 app.get('/', async (req, res) => {
     try {
-        const products = await Product.find().sort({ ProductStoreCode: -1 }); // Sắp xếp theo ProductStoreCode
+        let sortOption = req.query.sort; // Lấy lựa chọn sắp xếp từ query params
+        let sortCriteria = {};
+
+        // Xác định tiêu chí sắp xếp dựa trên lựa chọn
+        if (sortOption === 'storeCodeDesc') {
+            sortCriteria = { ProductStoreCode: -1 }; // Giảm dần theo ProductStoreCode
+        } else {
+            sortCriteria = {}; // Mặc định không sắp xếp
+        }
+
+        const products = await Product.find().sort(sortCriteria); // Sắp xếp theo tiêu chí
         res.render('index', { products });
     } catch (err) {
         res.status(500).send('Server Error');
